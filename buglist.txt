@@ -1,0 +1,11 @@
+My Guesses for the 4 Bugs
+------------------------------------------------------------------------------------------------
+1. size() - instead of returning correct list size, this method returns the list size + 1
+2. isEmpty() - returns false on a non empty list - I believe this is because the method is using size, which would be returning size of 1
+on an empty list.
+3. addBack(T value) - the first call of this method on a list is successful, adding a node to the list with the passed in value set as its value.
+All subsequent calls to addBack will still successfully add nodes to the back of this list, but their values will all be the value that was passed
+in to the first call to this method on the list.
+        For example: If I called addBack(5) addBack(4) addBack(3) on an empty list, the list would now be 5 -> 5 -> 5 instead of the
+        expected 5 -> 4 -> 3
+4. removeFront() - this method is performing the same functionality as removeBack()        
