@@ -37,6 +37,7 @@ class Test
     void search_emptyList();
     void search_valuePresent();
     void search_valueNotPresent();
+		void addBack_compare();
 
 };
 

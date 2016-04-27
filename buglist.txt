@@ -8,4 +8,4 @@ All subsequent calls to addBack will still successfully add nodes to the back of
 in to the first call to this method on the list.
         For example: If I called addBack(5) addBack(4) addBack(3) on an empty list, the list would now be 5 -> 5 -> 5 instead of the
         expected 5 -> 4 -> 3
-4. removeFront() - this method is performing the same functionality as removeBack()        
+4. removeFront() - this method is performing the same functionality as removeBack()

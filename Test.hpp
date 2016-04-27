@@ -38,6 +38,8 @@ void Test<T>::runTestSuite() {
   search_valuePresent();
   std::cout << "---------------------------------------------------------\n";
   search_emptyList();
+  std::cout << "---------------------------------------------------------\n";
+  addBack_compare();
 }
 
 template <typename T>
@@ -213,7 +215,7 @@ void Test<T>::removeBack_removeFromNonEmpty() {
   // Create a list, add multiple elements, remove on element using removeBack, then convert to vector
   LinkedList<int> myList;
   for(int idx = 0; idx < 10; idx++) {
-    myList.addBack(idx);
+    myList.addFront(idx);
   }
   myList.removeBack();
   std::vector<int> testVector = myList.toVector();
@@ -221,7 +223,7 @@ void Test<T>::removeBack_removeFromNonEmpty() {
   // Create a vector, add elements except one less than was added to list to simulate removal
   std::vector<int> correctVector;
   for(int idx = 0; idx < 9; idx++) {
-    correctVector.push_back(idx);
+    correctVector.push_back(9-idx);
   }
 
   if(testVector != correctVector) {
@@ -245,7 +247,7 @@ void Test<T>::removeFront_removeFromNonEmpty() {
   // Create a list, add multiple elements, remove one element using removeFront, then convert to vector
   LinkedList<int> myList;
   for(int idx = 0; idx < 10; idx++) {
-    myList.addBack(idx);
+    myList.addFront(idx);
   }
   myList.removeFront();
   std::vector<int> testVector = myList.toVector();
@@ -253,7 +255,7 @@ void Test<T>::removeFront_removeFromNonEmpty() {
   // Create a vector, add elements except one less than was added to list to simulate removal
   std::vector<int> correctVector;
   for(int idx = 0; idx < 9; idx++) {
-    correctVector.push_back(idx);
+    correctVector.push_back(8-idx);
   }
 
   if(testVector != correctVector) {
@@ -304,4 +306,28 @@ void Test<T>::search_valueNotPresent() {
 
   if(myList.search(100) == true) { std::cout << "Test 15 Failed: search method call on list not containing specified value returned true \n"; }
   else { std::cout << "Test 15 Passed: search method call on list not containing specified value returned false \n"; }
+}
+
+template <typename T>
+void Test<T>::addBack_compare() {
+  // Create list with several values then turn into vector
+  LinkedList<int> myList;
+  for(int idx = 0; idx < 5; idx++) { myList.addBack(idx); }
+  std::vector<int> myVector = myList.toVector();
+
+  // Create another list with several values then turn into vector
+  LinkedList<int> mySecondList;
+  for(int idx = 0; idx < 5; idx++) { mySecondList.addBack(5-idx); }
+  std::vector<int> mySecondVector = mySecondList.toVector();
+
+  std::cout << "Test 16: addBack comparison: \n";
+  std::cout << "On first list, expected results: 0,1,2,3,4\n";
+  std::cout << "Yielded results: ";
+  for(int idx = 0; idx < 5; idx++) { std::cout << myVector[idx] << ", "; }
+  std::cout << "\n";
+  std::cout << "On the second list, expected results: 5,4,3,2,1\n";
+  std::cout << "Yielded results: ";
+  for(int idx = 0; idx < 5; idx++) { std::cout << mySecondVector[idx] << ", "; }
+  std::cout << "\n";
+
 }
